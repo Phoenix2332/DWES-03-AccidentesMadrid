@@ -241,9 +241,7 @@ public class AccidentesLinqAnalyzer : IAccidentesAnalyzer {
     // ============================================================
 
     private static void Consulta07_PositivosAlcohol(IEnumerable<Accidente> accidentes) {
-        var total = accidentes
-            .AsParallel()
-            .Count(a => a.PositivoAlcohol);
+        var total = accidentes.Count(a => a.PositivoAlcohol);
 
         WriteLine($"   Positivos: {total:N0}");
     }
@@ -254,9 +252,7 @@ public class AccidentesLinqAnalyzer : IAccidentesAnalyzer {
     // ============================================================
 
     private static void Consulta08_PositivosDrogas(IEnumerable<Accidente> accidentes) {
-        var total = accidentes
-            .AsParallel()
-            .Count(a => a.PositivoDroga);
+        var total = accidentes.Count(a => a.PositivoDroga);
 
         WriteLine($"   Positivos: {total:N0}");
     }
@@ -368,9 +364,7 @@ public class AccidentesLinqAnalyzer : IAccidentesAnalyzer {
     // ============================================================
 
     private static void Consulta14_AccidentesConPeatones(IEnumerable<Accidente> accidentes) {
-        var total = accidentes
-            .AsParallel()
-            .Count(a => a.TipoPersona == TipoPersona.Peatón);
+        var total = accidentes.Count(a => a.TipoPersona == TipoPersona.Peatón);
 
         WriteLine($"   Peatones: {total:N0}");
     }
@@ -448,10 +442,7 @@ public class AccidentesLinqAnalyzer : IAccidentesAnalyzer {
     // ============================================================
 
     private static void Consulta18_MediaAccidentesPorDia(IEnumerable<Accidente> accidentes) {
-        var grupos = accidentes
-            .AsParallel()
-            .GroupBy(a => a.Fecha)
-            .ToList();
+        var grupos = accidentes.GroupBy(a => a.Fecha).ToList();
 
         var media = grupos.Count == 0 ? 0 : grupos.Average(g => g.Count());
 
@@ -464,9 +455,7 @@ public class AccidentesLinqAnalyzer : IAccidentesAnalyzer {
     // ============================================================
 
     private static void Consulta19_AlcoholYDroga(IEnumerable<Accidente> accidentes) {
-        var total = accidentes
-            .AsParallel()
-            .Count(a => a.PositivoAlcohol && a.PositivoDroga);
+        var total = accidentes.Count(a => a.PositivoAlcohol && a.PositivoDroga);
 
         WriteLine($"   Alcohol + droga: {total:N0}");
     }
