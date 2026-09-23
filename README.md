@@ -226,11 +226,8 @@ De la misma manera, se utiliza un cronómetro global para el tiempo de lectura d
 | Operación | Tiempo |
 |-----------|--------|
 | Lectura de los 3 CSV | **~1.264,181 ms** |
-| Lectura del CSV 2024 | **~476,638 ms** |
-| Lectura del CSV 2025 | **~493,321 ms** |
-| Lectura del CSV 2026 | **~294,223 ms** |
 
-Los tiempos de lectura pueden variar según el rendimiento del dispositivo en el momento de la ejecución del programa.
+Los tiempos de lectura pueden variar según el rendimiento del dispositivo en el momento de la ejecución del programa y al ser de manera asíncrona `Task.WhenAll()`, dependerá del tiempo que tarde en leer el archivo CSV más largo y pesado.
 
 ### Tiempo total por técnica
 
