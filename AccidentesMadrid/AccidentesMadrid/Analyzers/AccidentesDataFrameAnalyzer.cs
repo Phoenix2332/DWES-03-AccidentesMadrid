@@ -231,11 +231,7 @@ public class AccidentesDataFrameAnalyzer : IAccidentesAnalyzer {
     private static void Consulta07_PositivosAlcohol(DataFrame df) {
         var alcohol = (BooleanDataFrameColumn)df["PositivoAlcohol"];
 
-        var total = 0;
-
-        for (long i = 0; i < alcohol.Length; i++)
-            if (alcohol[i] == true)
-                total++;
+        var total = alcohol.Count(t => t == true);
 
         WriteLine($"   Positivos: {total:N0}");
     }
@@ -295,8 +291,8 @@ public class AccidentesDataFrameAnalyzer : IAccidentesAnalyzer {
         var horas = (PrimitiveDataFrameColumn<TimeSpan>)df["Hora"];
         var contador = new int[24];
 
-        for (long i = 0; i < horas.Length; i++)
-            contador[horas[i]!.Value.Hours]++;
+        foreach (var t in horas)
+            contador[t!.Value.Hours]++;
 
         var mejorHora = 0;
 
@@ -474,7 +470,7 @@ public class AccidentesDataFrameAnalyzer : IAccidentesAnalyzer {
 
         var contador = new Dictionary<string, int>();
 
-        for (long i = 0; i < df.Rows.Count; i++) {
+        for (var i = 0; i < df.Rows.Count; i++) {
             if (personas[i] != nameof(TipoPersona.Peatón))
                 continue;
 
@@ -533,8 +529,8 @@ public class AccidentesDataFrameAnalyzer : IAccidentesAnalyzer {
         var fechas = (PrimitiveDataFrameColumn<DateTime>)df["Fecha"];
         var contador = new Dictionary<int, int>();
 
-        for (long i = 0; i < fechas.Length; i++) {
-            var ano = fechas[i]!.Value.Year;
+        foreach (var t in fechas) {
+            var ano = t!.Value.Year;
 
             if (!contador.TryAdd(ano, 1))
                 contador[ano]++;
@@ -762,8 +758,8 @@ public class AccidentesDataFrameAnalyzer : IAccidentesAnalyzer {
         var columna = df[nombreColumna];
         var contador = new Dictionary<string, int>();
 
-        for (long i = 0; i < columna.Length; i++) {
-            var clave = columna[i]?.ToString() ?? "";
+        foreach (var t in columna) {
+            var clave = t?.ToString() ?? "";
 
             if (!contador.TryAdd(clave, 1))
                 contador[clave]++;
