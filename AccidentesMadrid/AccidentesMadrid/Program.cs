@@ -36,12 +36,6 @@ var dataFrame = dataFrameAnalyzer.Analizar(accidentes);
 WriteLine();
 WriteLine("========== COMPARATIVA DE TIEMPOS ==========");
 WriteLine($"Tiempo Total Lectura CSV (130.864 Accidentes): {cronometro.Elapsed.TotalMilliseconds:F3}ms");
-WriteLine(
-    $"Tiempo Aprox. Lectura CSV - 2024 (49.340 Accidentes): {cronometro.Elapsed.TotalMilliseconds / 0.3770:F3}ms");
-WriteLine(
-    $"Tiempo Aprox. Lectura CSV - 2025 (51.067 Accidentes): {cronometro.Elapsed.TotalMilliseconds / 0.3902:F3}ms");
-WriteLine(
-    $"Tiempo Aprox. Lectura CSV - 2026 (30.457 Accidentes): {cronometro.Elapsed.TotalMilliseconds / 0.2327:F3}ms");
 WriteLine();
 WriteLine($"Tiempo Total LINQ/PLINQ: {linq.Elapsed.TotalMilliseconds:F3}ms");
 WriteLine($"Tiempo medio por consulta LINQ/PLINQ: {linq.Elapsed.TotalMilliseconds / 30:F3}ms");
